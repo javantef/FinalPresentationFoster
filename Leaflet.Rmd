@@ -1,0 +1,33 @@
+---
+title: "Leaflet Test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(leaflet)
+
+m <- leaflet()
+m <- addTiles(m)
+m <- addMarkers(m, lng=-73.952533, lat=40.631021, popup="CUNY Brooklyn College")
+m
+
+
+```
+
+
+```{r}
+library(leaflet)
+
+m <- leaflet() %>% 
+  addTiles() %>%
+  addMarkers(lng=-73.952533, lat=40.631021, popup="CUNY Brooklyn College")
+m 
+
+```
+
+
