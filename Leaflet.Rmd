@@ -9,12 +9,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r}
+# Download "leaflet"package from the library
+
+# load the leaflet package 
 library(leaflet)
 
-m <- leaflet()
-m <- addTiles(m)
-m <- addMarkers(m, lng=-73.952533, lat=40.631021, popup="CUNY Brooklyn College")
-m
+gm <- leaflet() %>% 
+  addTiles()  # adds the map
+gm
 
 
 ```
@@ -23,11 +25,190 @@ m
 ```{r}
 library(leaflet)
 
-m <- leaflet() %>% 
-  addTiles() %>%
+# adds the map features
+gm <- leaflet() %>% 
+  addTiles() %>% 
   addMarkers(lng=-73.952533, lat=40.631021, popup="CUNY Brooklyn College")
-m 
+gm
 
 ```
+
+
+```{r}
+
+library(leaflet)
+
+gm <- leaflet() %>% 
+  addTiles() %>% # adds the map features
+  addMarkers(m, lng=-73.952533, lat=40.631021, popup="Sup?")
+gm
+
+```
+
+
+```{r}
+#Make Your Own Icon
+
+CUNYBC <- makeIcon(
+  iconUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg",
+  iconWidth = 70, iconHeight = 70)
+
+
+gm <- leaflet() %>% addTiles() %>%
+  addMarkers(gm, lng=-73.953558, lat=40.631021, icon = CUNYBC)
+gm
+
+```
+
+
+
+```{r}
+
+gm <- leaflet() %>% 
+addTiles() %>% 
+addCircleMarkers(lng=-73.952533, lat=40.631021, popup="CUNY Brooklyn College")
+
+gm
+
+```
+
+
+
+```{r}
+
+# Change Your Markers 
+
+a <- runif(50,1,50)
+b <- runif(50,1,50)
+long_lat <- data.frame(long,lat)
+
+gm <- leaflet(lat_long) %>% addTiles() %>% addCircleMarkers(lng = ~a,lat = ~b)
+
+gm
+```
+
+
+
+```{r}
+# Change Colors
+
+lat <- runif(50,1,50)
+long <- runif(50,1,50)
+long_lat <- data.frame(lat, long)
+
+gm <- leaflet(lat_long) %>% addTiles() %>% addCircleMarkers(color = 'purple')
+  
+gm
+
+```
+
+
+```{r}
+#Label Options, font, and font size
+
+CUNYBC <- makeIcon(
+  iconUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg",
+  iconWidth = 70, iconHeight = 70)
+
+
+gm <- leaflet() %>% addTiles() %>% addMarkers(lng=-73.953558, lat=40.631021, icon = CUNYBC, label = "Sup?",  labelOptions = labelOptions(noHide = F, direction = "bottom", style = list("color" = "red","font-family" = "Flubber", "font-size" = "50px")))
+  
+gm
+
+```
+
+
+
+
+
+
+```{r}
+
+
+```
+
+
+
+```{r}
+
+James_Hall <- c(lng=-73.953558, lat=40.631736)
+Roosevelt_Hall <- c(lng=-73.953156, lat=40.630189)
+WestQuadCenter <- c(lng=73.954331, lat=40.630999)
+
+Boylan_Hall <- c(lng=73.951675, lat=40.631828)
+Ingersoll_Hall <- c(lng=-73.951536, lat= 40.630850)
+BCLibrary <- c(lng=-73.950398, lat=40.631461)
+
+Whitehead_Hall <- c(lng=-73.950422, lat=40.631922)
+TowPerfromingArtsCenter <- c(lng=-73.948991, lat=40.631140)
+
+BuildBC <- data.frame(James_Hall, Roosevelt_Hall,
+                            WestQuadCenter,
+                            Boylan_Hall,
+                            Ingersoll_Hall,
+                            BCLibrary,
+                            Whitehead_Hall,
+                            TowPerfromingArtsCenter)
+```
+
+
+```{r}
+long <- c(73.953558, 73.953156,73.954331, 73.951675, 73.951536, 73.950398,  73.950422, 73.948991)
+lat <- c(40.631736, 40.630189, 40.630999, 40.631828, 40.630850, 40.631461, 40.631922,40.631140)
+long_lat <- data.frame(long,lat)
+
+gm <- leaflet(BuildBC) %>% addTiles() %>% addCircleMarkers(~long,~lat)
+  
+gm
+
+
+```
+
+
+
+
+```{r}
+library(sp)
+
+CUNYBC <- makeIcon(
+  iconUrl = "https://upload.wikimedia.org/wikipedia/commons/6/6c/2016_Brooklyn_College_Library.jpg",
+  iconWidth = 70, iconHeight = 70)
+
+gm <- leaflet(long_lat) %>% addTiles() %>% addCircleMarkers(lng=~long, lat=~lat)
+  
+gm
+
+
+
+
+```
+
+
+
+```{r}
+#long_lat
+
+#James_Hall <- (lng=-73.953558, lat=40.631736)
+#Roosevelt_Hall <- (lng=-73.953156, lat=40.630189)
+#WestQuadCenter <- (lng=-73.954331, lat=40.630999)
+
+#Boylan_Hall <- (lng=-73.951675, lat=40.631828)
+#Ingersoll_Hall <- (lng=-73.951536, lat=40.630850)
+#Library <- (lng=-73.950398, lat=40.631461)
+
+#Whitehead_Hall <- (lng=-73.950422, lat=40.631922)
+#TowPerfromingArtsCenter <- (lng=-73.948991, lat=40.631140)
+# )
+
+
+
+
+#lat <- runif(50,1,50)
+#long <- runif(50,1,50)
+#lat_long <- cbind.data.frame(lat, long)
+
+```
+
+
 
 
